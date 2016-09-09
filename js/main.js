@@ -1,3 +1,11 @@
+
+// initialize quiz array of questions.
+var quiz = [];
+    // takes rawQuiz variable from questions.js file
+for (var i = 0; i < rawQuiz0.length; i++) {
+    quiz.push(new Question(rawQuiz0[i][0], rawQuiz0[i][1]));
+}
+
 /*
  Example question object
 
