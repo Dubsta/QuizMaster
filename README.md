@@ -1,2 +1,3 @@
 # QuizMaster
-Do a quiz!
+
+A 10 question quiz.
