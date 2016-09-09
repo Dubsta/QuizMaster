@@ -17,6 +17,12 @@
 }
 
 */
+var answerIndex = ['#zero', '#one', '#two', '#three'];
+$('#loadQuestion').click(function(){
+	var myQestion = new Question("What is national language of Brasil?", ["Portugese", "Spanish", "Italian", "French"]);
+	loadQuestion(myQestion);
+});
+
 
 // question constructor
 function Question (questionText, answerArr) {
@@ -38,4 +44,14 @@ function Question (questionText, answerArr) {
     }
     this.answers = temp;
     this.trueAnswer = temp[0];
+}
+function loadQuestion(obj){
+	if (obj === undefined){
+		console.log("no object loaded");
+		return;
+	}
+	$('#theQuestion').html(obj.text);
+	for (let i = 0; i < obj.answers.length; i++){
+		$(answerIndex[i]).html(obj.answers[i].text);
+	}
 }
