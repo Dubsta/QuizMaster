@@ -7,6 +7,7 @@ for (var i = 0; i < rawQuiz0.length; i++) {
 }
 var questionNumber = 0; // the number so far
 var answerIndex = ['#zero', '#one', '#two', '#three'];
+var currentAnswer;
 
 // button handler
 $('#loadQuestion').click(function(){
@@ -16,6 +17,7 @@ $('#loadQuestion').click(function(){
     	$('#loadQuestion').text('NEXT');
     }
     questionNumber++;
+    $('#number').html(questionNumber);
 });
 
 
@@ -52,8 +54,18 @@ function loadQuestion(question){
 		console.log("no question object loaded");
 		return;
 	}
+	currentAnswer = question.trueAnswer.text;
+	console.log('currentAnswer: ' + currentAnswer);
+	let theOrder = [];
+	do{
+		var num = Math.floor((Math.random() * rawQuiz0.length) + 0);
+		if (theOrder.indexOf(num) === -1)
+			theOrder.push(num);
+	}
+	while (theOrder.length < rawQuiz0.length);
+	console.log(theOrder);
 	$('#theQuestion').html(question.text);
 	for (let i = 0; i < question.answers.length; i++){
-		$(answerIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[i].text );
+		$(answerIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text );
 	}
 }
