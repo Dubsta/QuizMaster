@@ -49,11 +49,11 @@ function Question (questionText, answerArr) {
 
 function loadQuestion(question){
 	if (question === undefined){
-		console.log("no questionect loaded");
+		console.log("no question object loaded");
 		return;
 	}
 	$('#theQuestion').html(question.text);
 	for (let i = 0; i < question.answers.length; i++){
-		$(answerIndex[i]).html(question.answers[i].text + '<button class="btn btn-lg btn-primary">');
+		$(answerIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[i].text );
 	}
 }
