@@ -6,30 +6,18 @@ for (var i = 0; i < rawQuiz0.length; i++) {
     quiz.push(new Question(rawQuiz0[i][0], rawQuiz0[i][1]));
 }
 
-/*
- Example question object
-
-{
-    text: "How many eggs in a dozen?"
-    answers: 
-    [
-        {
-            text: "12",
-            correct: true   
-        },
-        {
-            text: "6",
-            correct: false
-        }
-    ]
-}
-
-*/
 var answerIndex = ['#zero', '#one', '#two', '#three'];
+
+// button handler
 $('#loadQuestion').click(function(){
-	var myQestion = new Question("What is national language of Brasil?", ["Portugese", "Spanish", "Italian", "French"]);
-	loadQuestion(myQestion);
+    // !! Just for now !! 
+    loadQuestion(quiz[0]);
 });
+
+
+/***********************
+Functions
+************************/
 
 
 // question constructor
@@ -53,13 +41,15 @@ function Question (questionText, answerArr) {
     this.answers = temp;
     this.trueAnswer = temp[0];
 }
-function loadQuestion(obj){
-	if (obj === undefined){
-		console.log("no object loaded");
+
+
+function loadQuestion(question){
+	if (question === undefined){
+		console.log("no questionect loaded");
 		return;
 	}
-	$('#theQuestion').html(obj.text);
-	for (let i = 0; i < obj.answers.length; i++){
-		$(answerIndex[i]).html(obj.answers[i].text);
+	$('#theQuestion').html(question.text);
+	for (let i = 0; i < question.answers.length; i++){
+		$(answerIndex[i]).html(question.answers[i].text);
 	}
 }
