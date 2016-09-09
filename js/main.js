@@ -5,13 +5,17 @@ var quiz = [];
 for (var i = 0; i < rawQuiz0.length; i++) {
     quiz.push(new Question(rawQuiz0[i][0], rawQuiz0[i][1]));
 }
-
+var questionNumber = 0; // the number so far
 var answerIndex = ['#zero', '#one', '#two', '#three'];
 
 // button handler
 $('#loadQuestion').click(function(){
     // !! Just for now !! 
-    loadQuestion(quiz[0]);
+    loadQuestion(quiz[questionNumber]);
+    if (!questionNumber){
+    	$('#loadQuestion').text('NEXT');
+    }
+    questionNumber++;
 });
 
 
@@ -50,6 +54,6 @@ function loadQuestion(question){
 	}
 	$('#theQuestion').html(question.text);
 	for (let i = 0; i < question.answers.length; i++){
-		$(answerIndex[i]).html(question.answers[i].text);
+		$(answerIndex[i]).html(question.answers[i].text + '<button class="btn btn-lg btn-primary">');
 	}
 }
