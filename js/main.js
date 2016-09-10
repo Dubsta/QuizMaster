@@ -8,6 +8,7 @@ for (var i = 0; i < rawQuiz0.length; i++) {
 var questionNumber = 0; // the number so far
 var answerIndex = ['#zero', '#one', '#two', '#three'];
 var currentAnswer;
+var score = 0;
 
 // button handler
 $('#loadQuestion').click(function(){
@@ -38,14 +39,15 @@ Functions
 ************************/
 function nextQuestion(num){
     var tempNum = $(answerIndex[num]).attr('value');
-    if (tempNum != 0){
-        loadQuestion(quiz[questionNumber]);
-        if (!questionNumber){
-            $('#loadQuestion').text('NEXT');
+    console.log(tempNum);
+    if (tempNum == 0){
+        score++;
+        var myText = 'SCORE ' + score + '/' + rawQuiz0.length;
+        $('#score').text(myText);
     }
+    loadQuestion(quiz[questionNumber]);    
     questionNumber++;
     $('#number').html(questionNumber);
-    }
 }
 
 // question constructor
