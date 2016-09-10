@@ -19,12 +19,34 @@ $('#loadQuestion').click(function(){
     questionNumber++;
     $('#number').html(questionNumber);
 });
+$('#zero').click(function(){
+    nextQuestion(0);
+});
+$('#one').click(function(){
+    nextQuestion(1);
+});
+$('#two').click(function(){
+    nextQuestion(2);
+});
+$('#three').click(function(){
+    nextQuestion(3);
+});
 
 
 /***********************
 Functions
 ************************/
-
+function nextQuestion(num){
+    var tempNum = $(answerIndex[num]).attr('value');
+    if (tempNum != 0){
+        loadQuestion(quiz[questionNumber]);
+        if (!questionNumber){
+            $('#loadQuestion').text('NEXT');
+    }
+    questionNumber++;
+    $('#number').html(questionNumber);
+    }
+}
 
 // question constructor
 function Question (questionText, answerArr) {
@@ -66,6 +88,7 @@ function loadQuestion(question){
 	console.log(theOrder);
 	$('#theQuestion').html(question.text);
 	for (let i = 0; i < question.answers.length; i++){
-		$(answerIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text );
+		$(answerIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text);
+        $(answerIndex[i]).attr('value', theOrder[i]);
 	}
 }
