@@ -82,11 +82,11 @@ function loadQuestion(question){
 	console.log('currentAnswer: ' + currentAnswer);
 	let theOrder = [];
 	do{
-		var num = Math.floor((Math.random() * rawQuiz0.length) + 0);
+		var num = Math.floor((Math.random() * 4) + 0);
 		if (theOrder.indexOf(num) === -1)
 			theOrder.push(num);
 	}
-	while (theOrder.length < rawQuiz0.length);
+	while (theOrder.length < 4);
 	console.log(theOrder);
 	$('#theQuestion').html(question.text);
 	for (let i = 0; i < question.answers.length; i++){
