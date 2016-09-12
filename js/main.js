@@ -5,10 +5,11 @@ var quiz = [];
 for (var i = 0; i < rawQuiz0.length; i++) {
     quiz.push(new Question(rawQuiz0[i][0], rawQuiz0[i][1]));
 }
+
 var questionNumber = 0; // the number so far
-var answerIndex = ['#zero', '#one', '#two', '#three'];
 var currentAnswer;
 var score = 0;
+var answerPositionIndex = ['#zero', '#one', '#two', '#three'];
 
 // button handler
 $('#loadQuestion').click(function(){
@@ -38,7 +39,7 @@ $('#three').click(function(){
 Functions
 ************************/
 function nextQuestion(num){
-    var tempNum = $(answerIndex[num]).attr('value');
+    var tempNum = $(answerPositionIndex[num]).attr('value');
     console.log(tempNum);
     if (tempNum == 0){
         score++;
@@ -73,24 +74,32 @@ function Question (questionText, answerArr) {
 }
 
 
-function loadQuestion(question){
-	if (question === undefined){
+function loadQuestion(question) {
+	// Error checking
+    if (question === undefined) {
 		console.log("no question object loaded");
 		return;
 	}
-	currentAnswer = question.trueAnswer.text;
-	console.log('currentAnswer: ' + currentAnswer);
+
+    // load question
+    $('#theQuestion').html(question.text);
+
+
+    // randomly load questions
 	let theOrder = [];
-	do{
-		var num = Math.floor((Math.random() * 4) + 0);
-		if (theOrder.indexOf(num) === -1)
-			theOrder.push(num);
+	while (theOrder.length < question.answers.length) {    
+        // rand is in range 0 - 3
+		var rand = Math.floor((Math.random() * question.answers.length));
+		if (theOrder.indexOf(rand) === -1)
+			theOrder.push(rand);
 	}
-	while (theOrder.length < 4);
-	console.log(theOrder);
-	$('#theQuestion').html(question.text);
+    
 	for (let i = 0; i < question.answers.length; i++){
-		$(answerIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text);
-        $(answerIndex[i]).attr('value', theOrder[i]);
+		$(answerPositionIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text);
+        $(answerPositionIndex[i]).attr('value', theOrder[i]);
 	}
+
+    // Debugging
+    console.table(theOrder);
+    console.log('currentAnswer: ' + question.trueAnswer.text);
 }
