@@ -85,7 +85,7 @@ function loadQuestion(question) {
     $('#theQuestion').html(question.text);
 
 
-    // randomly load questions
+    // create array for ransom order
 	let theOrder = [];
 	while (theOrder.length < question.answers.length) {    
         // rand is in range 0 - 3
@@ -94,12 +94,8 @@ function loadQuestion(question) {
 			theOrder.push(rand);
 	}
     
+    // insert the buttons
 	for (let i = 0; i < question.answers.length; i++){
-		$(answerPositionIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text);
-        $(answerPositionIndex[i]).attr('value', theOrder[i]);
+		$('#answerList').append('<li><button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text + '</button></li>');
 	}
-
-    // Debugging
-    console.table(theOrder);
-    console.log('currentAnswer: ' + question.trueAnswer.text);
 }
