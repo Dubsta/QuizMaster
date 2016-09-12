@@ -81,9 +81,10 @@ function loadQuestion(question) {
 		return;
 	}
 
+    clearQuestion();
+
     // load question
     $('#theQuestion').html(question.text);
-
 
     // create array for ransom order
 	let theOrder = [];
@@ -98,4 +99,9 @@ function loadQuestion(question) {
 	for (let i = 0; i < question.answers.length; i++){
 		$('#answerList').append('<li><button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text + '</button></li>');
 	}
+}
+
+function clearQuestion() {
+    $('#theQuestion').empty();
+    $('#answerList').empty();
 }
