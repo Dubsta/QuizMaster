@@ -7,7 +7,6 @@ for (var i = 0; i < rawQuiz0.length; i++) {
 }
 
 var questionNumber = 0; // the number so far
-var currentAnswer;
 var score = 0;
 var answerPositionIndex = ['#zero', '#one', '#two', '#three'];
 
@@ -43,7 +42,7 @@ function nextQuestion(num){
     console.log(tempNum);
     if (tempNum == 0){
         score++;
-        var myText = 'SCORE ' + score + '/' + rawQuiz0.length;
+        var myText = 'SCORE ' + score + '/' + quiz.length;
         $('#score').text(myText);
     }
     loadQuestion(quiz[questionNumber]);    
@@ -83,13 +82,12 @@ function loadQuestion(question) {
 
     clearQuestion();
 
-    // load question
+    // load question text
     $('#theQuestion').html(question.text);
 
     // create array for ransom order
 	let theOrder = [];
 	while (theOrder.length < question.answers.length) {    
-        // rand is in range 0 - 3
 		var rand = Math.floor((Math.random() * question.answers.length));
 		if (theOrder.indexOf(rand) === -1)
 			theOrder.push(rand);
@@ -97,11 +95,29 @@ function loadQuestion(question) {
     
     // insert the buttons
 	for (let i = 0; i < question.answers.length; i++){
-		$('#answerList').append('<li><button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text + '</button></li>');
+		$('#answerList').append('<li><button class="btn btn-lg btn-primary answer">' + question.answers[theOrder[i]].text + '</button></li>');
 	}
+
+    $(".answer").click(function () {
+        checkAnswer($(this));
+    });
+
+
 }
 
 function clearQuestion() {
     $('#theQuestion').empty();
     $('#answerList').empty();
 }
+
+// Pass in the answer button as jQuery object
+function checkAnswer(buttonClicked) {
+    if (buttonClicked.text() === quiz[questionNumber].trueAnswer.text) {
+        console.log("CORRECT!");
+    }
+    else {
+        console.log("INCORRECT!");
+    }
+}
+
+
