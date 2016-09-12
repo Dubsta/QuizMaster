@@ -8,8 +8,8 @@ Format:
 
 var rawQuiz0 =
 [
-    ["What is national language of Brasil?", ["Portugese", "Spanish", "Italian", "French"] ],
-    ["What year was the first Harry Potter book published?", ["1997", "1995", "1996","1998"] ],
+    ["What is national language of Brasil?", ["Portugese", "Spanish", "Italian", "French", "test0"] ],
+    ["What year was the first Harry Potter book published?", ["1997", "1995", "1996","1998", "test1"] ],
     ["How long is a nautical mile?", ["1.8kms", "1.6km", "1.7km", "1.9km"] ],
     ["Who was born first?", ["Churchill", "Hitler", "Stalin", "Mussolini" ] ],
     ["What colour pill did Neo choose in the Matrix?", ["Red", "Blue", "Green", "Yellow"] ],

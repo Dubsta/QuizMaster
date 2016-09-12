@@ -93,13 +93,14 @@ function loadQuestion(question) {
 		if (theOrder.indexOf(rand) === -1)
 			theOrder.push(rand);
 	}
-    
+    console.log(theOrder);
+    var myHtml = '<ul type="square">';
 	for (let i = 0; i < question.answers.length; i++){
-		$(answerPositionIndex[i]).html('<button class="btn btn-lg btn-primary">' + question.answers[theOrder[i]].text);
-        $(answerPositionIndex[i]).attr('value', theOrder[i]);
+		myHtml += '<button class="btn btn-lg btn-primary" id="#num' + i + '" value="' + theOrder[i] + '">';
+        myHtml +=  question.answers[theOrder[i]].text + '</button>';
+        //$(answerPositionIndex[i]).attr('value', theOrder[i]);
 	}
+    myHtml += '</ul>';
+    $('#theList').html(myHtml);
 
-    // Debugging
-    console.table(theOrder);
-    console.log('currentAnswer: ' + question.trueAnswer.text);
 }
