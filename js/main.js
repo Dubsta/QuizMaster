@@ -8,47 +8,16 @@ for (var i = 0; i < rawQuiz0.length; i++) {
 
 var questionNumber = 0; // the number so far
 var score = 0;
-var answerPositionIndex = ['#zero', '#one', '#two', '#three'];
 
-// button handler
-$('#loadQuestion').click(function(){
-    // !! Just for now !! 
+// Start button handler
+$('#start').click(function(){
+    $(this).remove();
     loadQuestion(quiz[questionNumber]);
-    if (!questionNumber){
-    	$('#loadQuestion').text('NEXT');
-    }
-    questionNumber++;
-    $('#number').html(questionNumber);
 });
-$('#zero').click(function(){
-    nextQuestion(0);
-});
-$('#one').click(function(){
-    nextQuestion(1);
-});
-$('#two').click(function(){
-    nextQuestion(2);
-});
-$('#three').click(function(){
-    nextQuestion(3);
-});
-
 
 /***********************
 Functions
 ************************/
-function nextQuestion(num){
-    var tempNum = $(answerPositionIndex[num]).attr('value');
-    console.log(tempNum);
-    if (tempNum == 0){
-        score++;
-        var myText = 'SCORE ' + score + '/' + quiz.length;
-        $('#score').text(myText);
-    }
-    loadQuestion(quiz[questionNumber]);    
-    questionNumber++;
-    $('#number').html(questionNumber);
-}
 
 // question constructor
 function Question (questionText, answerArr) {
@@ -82,8 +51,9 @@ function loadQuestion(question) {
 
     clearQuestion();
 
-    // load question text
+    // load question text and update display number
     $('#theQuestion').html(question.text);
+    $('#number').html(questionNumber + 1);
 
     // create array for ransom order
 	let theOrder = [];
@@ -98,8 +68,16 @@ function loadQuestion(question) {
 		$('#answerList').append('<li><button class="btn btn-lg btn-primary answer">' + question.answers[theOrder[i]].text + '</button></li>');
 	}
 
+
+    // Answer button click handler
     $(".answer").click(function () {
-        checkAnswer($(this));
+        if (checkAnswer($(this))) {
+            score++;
+            var myText = 'SCORE ' + score + '/' + quiz.length;
+            $('#score').text(myText);
+        }
+        questionNumber++;
+        loadQuestion(quiz[questionNumber]);    
     });
 
 
@@ -113,11 +91,9 @@ function clearQuestion() {
 // Pass in the answer button as jQuery object
 function checkAnswer(buttonClicked) {
     if (buttonClicked.text() === quiz[questionNumber].trueAnswer.text) {
-        console.log("CORRECT!");
+        return true;
     }
     else {
-        console.log("INCORRECT!");
+        return false;
     }
 }
-
-
