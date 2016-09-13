@@ -14,6 +14,8 @@ Main program flow
 for (var i = 0; i < rawQuiz0.length; i++) {
     quiz.push(new Question(rawQuiz0[i][0], rawQuiz0[i][1]));
 }
+// update score board
+$('#score').text('SCORE ' + score + '/' + quiz.length);
 
 // Start button handler
 $('#start').click(function(){
@@ -53,8 +55,6 @@ function loadNextQuestion(question) {
         console.log("no question object loaded");
         return;
     }
-
-    //clearQuestion();
 
     renderQuestionText(question);
 
