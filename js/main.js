@@ -1,13 +1,19 @@
 
-// initialize quiz array of questions.
+/***********************
+Globals
+************************/
+var questionNumber = 0; 
+var score = 0;
 var quiz = [];
-    // takes rawQuiz variable from questions.js file
+
+/***********************
+Main program flow
+************************/
+
+// insert questions.js into quiz[] as Question objects
 for (var i = 0; i < rawQuiz0.length; i++) {
     quiz.push(new Question(rawQuiz0[i][0], rawQuiz0[i][1]));
 }
-
-var questionNumber = 0; // the number so far
-var score = 0;
 
 // Start button handler
 $('#start').click(function(){
