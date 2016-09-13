@@ -54,7 +54,7 @@ function loadNextQuestion(question) {
         return;
     }
 
-    clearQuestion();
+    //clearQuestion();
 
     renderQuestionText(question);
 
@@ -80,9 +80,13 @@ function renderQuestionText(question) {
 	}
     
     // insert the buttons
+    var myHtml = '';
 	for (let i = 0; i < question.answers.length; i++){
-		$('#answerList').append('<li><button class="btn btn-lg btn-primary answer">' + question.answers[theOrder[i]].text + '</button></li>');
+		myHtml += '<li><button class="btn btn-lg btn-primary answer">' + question.answers[theOrder[i]].text + '</button></li>'
 	}
+    $('#answerList').html(myHtml);
+    $('#answerList').hide();
+    $('#answerList').fadeIn(1500);
 }
 
 function clearQuestion() {
