@@ -16,7 +16,7 @@ $('#loadQuestion').click(function(){
     // !! Just for now !! 
     loadQuestion(quiz[questionNumber]);
     if (!questionNumber){
-    	$('#loadQuestion').text('NEXT');
+    	$('#loadQuestion').hide();
     }
     questionNumber++;
     $('#number').html(questionNumber);
@@ -100,7 +100,7 @@ function loadQuestion(question) {
 	}
     myHtml += '</ul>';
     $('#theList').html(myHtml);
-    $('.btn').click(function(){
+    $('.ansBtn').click(function(){
     console.log(this.value);
     nextQuestion(this.value);
 });
