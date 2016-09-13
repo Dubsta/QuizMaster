@@ -39,9 +39,9 @@ $('#three').click(function(){
 Functions
 ************************/
 function nextQuestion(num){
-    var tempNum = $(answerPositionIndex[num]).attr('value');
-    console.log(tempNum);
-    if (tempNum == 0){
+    //var tempNum = $(answerPositionIndex[num]).attr('value');
+    //console.log( 'tempNum = ' + tempNum);
+    if (num == 0){
         score++;
         var myText = 'SCORE ' + score + '/' + rawQuiz0.length;
         $('#score').text(myText);
@@ -80,11 +80,10 @@ function loadQuestion(question) {
 		console.log("no question object loaded");
 		return;
 	}
-
+    
     // load question
     $('#theQuestion').html(question.text);
-
-
+    currentAnswer = question.answers[0].text;
     // randomly load questions
 	let theOrder = [];
 	while (theOrder.length < question.answers.length) {    
@@ -96,11 +95,14 @@ function loadQuestion(question) {
     console.log(theOrder);
     var myHtml = '<ul type="square">';
 	for (let i = 0; i < question.answers.length; i++){
-		myHtml += '<li><button class="btn btn-lg btn-primary" id="#num' + i + '" value="' + theOrder[i] + '">';
+		myHtml += '<li><button class="btn btn-lg btn-primary ansBtn" id="num' + i + '" value="' + theOrder[i] + '">';
         myHtml +=  question.answers[theOrder[i]].text + '</button></li>';
-        //$(answerPositionIndex[i]).attr('value', theOrder[i]);
 	}
     myHtml += '</ul>';
     $('#theList').html(myHtml);
+    $('.btn').click(function(){
+    console.log(this.value);
+    nextQuestion(this.value);
+});
 
 }
