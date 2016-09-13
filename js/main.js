@@ -12,7 +12,7 @@ var score = 0;
 // Start button handler
 $('#start').click(function(){
     $(this).remove();
-    loadQuestion(quiz[questionNumber]);
+    loadNextQuestion(quiz[questionNumber]);
 });
 
 /***********************
@@ -41,15 +41,25 @@ function Question (questionText, answerArr) {
     this.trueAnswer = temp[0];
 }
 
-
-function loadQuestion(question) {
-	// Error checking
+function loadNextQuestion(question) {
+    // Error checking
     if (question === undefined) {
-		console.log("no question object loaded");
-		return;
-	}
+        console.log("no question object loaded");
+        return;
+    }
 
     clearQuestion();
+
+    renderQuestionText(question);
+
+    // Answer button click handler
+    $(".answer").click(function () {
+        checkAnswer($(this));
+        loadNextQuestion(quiz[++questionNumber]);    
+    });
+} 
+
+function renderQuestionText(question) {
 
     // load question text and update display number
     $('#theQuestion').html(question.text);
@@ -67,20 +77,6 @@ function loadQuestion(question) {
 	for (let i = 0; i < question.answers.length; i++){
 		$('#answerList').append('<li><button class="btn btn-lg btn-primary answer">' + question.answers[theOrder[i]].text + '</button></li>');
 	}
-
-
-    // Answer button click handler
-    $(".answer").click(function () {
-        if (checkAnswer($(this))) {
-            score++;
-            var myText = 'SCORE ' + score + '/' + quiz.length;
-            $('#score').text(myText);
-        }
-        questionNumber++;
-        loadQuestion(quiz[questionNumber]);    
-    });
-
-
 }
 
 function clearQuestion() {
@@ -91,6 +87,9 @@ function clearQuestion() {
 // Pass in the answer button as jQuery object
 function checkAnswer(buttonClicked) {
     if (buttonClicked.text() === quiz[questionNumber].trueAnswer.text) {
+        score++;
+        var myText = 'SCORE ' + score + '/' + quiz.length;
+        $('#score').text(myText);
         return true;
     }
     else {
