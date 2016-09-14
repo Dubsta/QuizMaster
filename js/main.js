@@ -5,6 +5,7 @@ Globals
 var questionNumber = 0; 
 var score = 0;
 var quiz = [];
+var fadeDuration = 500;
 
 /***********************
 Main program flow
@@ -21,7 +22,9 @@ $('#score').text('SCORE ' + score + '/' + quiz.length);
 // Start button handler
 $('#start').click(function(){
     $(this).remove();
-    loadNextQuestion(quiz[questionNumber]);
+    $('#wholeQuestion').fadeOut(fadeDuration, function () {
+        loadNextQuestion(quiz[questionNumber]); 
+    });
 });
 
 /***********************
@@ -67,10 +70,14 @@ function loadNextQuestion(question) {
 
     // Answer button click handler
     $(".answer").click(function () {
+        $('.answer').prop('disabled', true);
         checkAnswer($(this));
-        loadNextQuestion(quiz[++questionNumber]);    
+        $('#wholeQuestion').fadeOut(fadeDuration, function () {
+            loadNextQuestion(quiz[++questionNumber]); 
+        });
     });
-} 
+}
+
 
 function renderQuestionText(question) {
 
@@ -92,8 +99,8 @@ function renderQuestionText(question) {
 		myHtml += '<li><button class="btn btn-lg btn-primary answer">' + question.answers[theOrder[i]].text + '</button></li>'
 	}
     $('#answerList').html(myHtml);
-    $('#answerList').hide();
-    $('#answerList').fadeIn(1500);
+    //$('#wholeQuestion').hide();
+    $('#wholeQuestion').fadeIn(fadeDuration);
 }
 
 function clearQuestion() {
@@ -118,6 +125,7 @@ function endQuiz() {
     clearQuestion();
     $('#number').empty();
     var message = "Congratulations! You score is " + score + '/' + quiz.length;
-    $('#theQuestion').html(message);
-    $('#score').remove();
+    $('#theQuestion').html(message)
+    $('#wholeQuestion').slideDown(fadeDuration);
+    $('#score').slideUp(fadeDuration);
 }
