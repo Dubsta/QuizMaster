@@ -19,3 +19,11 @@ var rawQuiz0 =
     ["Which film beat Star Wars (the orginal) for Best Picture?", ["Annie Hall", "Rocky", "Close Encounters", "Kramer v Kramer"]],
     ["Who is the patron saint for travellers?", ["St. Christopher", "St. Patrick", "St. Valentine", "St. Clare"]]   
 ];
+
+// Short quiz for debugging
+
+var debugQuiz =
+[
+    ["Pick the largest", ["3", "2", "1"]],
+    ["Choose A", ["A","B","C","D","E"]]
+];

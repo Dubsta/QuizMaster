@@ -11,8 +11,9 @@ Main program flow
 ************************/
 
 // insert questions.js into quiz[] as Question objects
-for (var i = 0; i < rawQuiz0.length; i++) {
-    quiz.push(new Question(rawQuiz0[i][0], rawQuiz0[i][1]));
+var targetQuiz = debugQuiz;
+for (var i = 0; i < targetQuiz.length; i++) {
+    quiz.push(new Question(targetQuiz[i][0], targetQuiz[i][1]));
 }
 // update score board
 $('#score').text('SCORE ' + score + '/' + quiz.length);
@@ -50,6 +51,12 @@ function Question (questionText, answerArr) {
 }
 
 function loadNextQuestion(question) {
+
+    // check for end of quiz
+    if (questionNumber >= quiz.length) {
+        endQuiz();
+        return;
+    }
     // Error checking
     if (question === undefined) {
         console.log("no question object loaded");
@@ -105,4 +112,8 @@ function checkAnswer(buttonClicked) {
     else {
         return false;
     }
+}
+
+function endQuiz() {
+    console.log("The quiz has ended");
 }
