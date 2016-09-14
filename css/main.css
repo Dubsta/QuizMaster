@@ -1,3 +1,20 @@
+
 li{
 	padding-top: 10px;
+}
+
+#answerList {
+    list-style-type: none;
+}
+
+#answerList li {
+    display: inline-block;
+}
+
+.answer {
+    margin: 10px;
+}
+
+#theQuestion, #number {
+    display: inline;
 }

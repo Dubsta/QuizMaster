@@ -9,26 +9,28 @@
 </head>
 
 <body>
-<header>
-	<h1>Quiz Master</h1>
-</header>
-<div>
-	<h2 id="theQuestion">
-		Press the start button to begin your quizz!
-	</h2>
-	<h3 id="number"></h3>
-</div>
+<div class="container">
+	<header>
+		<h1>Quiz Master</h1>
+	</header>
+	<div>
+		<h2 id="number"></h2>
+		<h2 id="theQuestion">
+			Press the start button to begin your quizz!
+		</h2>
+	</div>
 
-<!-- Answers -->
-<section class="theAnswers">
-	<ul id="answerList" type='square'>
-	</ul>
-</section>
+	<!-- Answers -->
+	<section class="theAnswers">
+		<ul id="answerList">
+		</ul>
+	</section>
 
-<div>
-	<hr>
-	<button id="start" class="btn btn-warning">START</button>
-	<button id="score" class="btn btn-success">SCORE 0/4</button>	
+	<div>
+		<hr>
+		<button id="start" class="btn btn-warning">START</button>
+		<button id="score" class="btn btn-success"></button>	
+	</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
