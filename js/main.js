@@ -12,7 +12,7 @@ Main program flow
 ************************/
 
 // insert questions.js into quiz[] as Question objects
-var targetQuiz = debugQuiz;
+var targetQuiz = rawQuiz0;
 for (var i = 0; i < targetQuiz.length; i++) {
     quiz.push(new Question(targetQuiz[i][0], targetQuiz[i][1]));
 }
@@ -83,7 +83,7 @@ function renderQuestionText(question) {
 
     // load question text and update display number
     $('#theQuestion').html(question.text);
-    $('#number').html(questionNumber + 1);
+    $('#number').html(questionNumber + 1 + ". ");
 
     // create array for ransom order
 	let theOrder = [];
