@@ -115,5 +115,9 @@ function checkAnswer(buttonClicked) {
 }
 
 function endQuiz() {
-    console.log("The quiz has ended");
+    clearQuestion();
+    $('#number').empty();
+    var message = "Congratulations! You score is " + score + '/' + quiz.length;
+    $('#theQuestion').html(message);
+    $('#score').remove();
 }
