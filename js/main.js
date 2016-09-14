@@ -72,9 +72,11 @@ function loadNextQuestion(question) {
     $(".answer").click(function () {
         $('.answer').prop('disabled', true);
         checkAnswer($(this));
-        $('#wholeQuestion').fadeOut(fadeDuration, function () {
-            loadNextQuestion(quiz[++questionNumber]); 
-        });
+        setTimeout( function () {
+            $('#wholeQuestion').fadeOut(fadeDuration, function () {
+                loadNextQuestion(quiz[++questionNumber]); 
+            });
+        }, 500);
     });
 }
 
@@ -114,9 +116,11 @@ function checkAnswer(buttonClicked) {
         score++;
         var myText = 'SCORE ' + score + '/' + quiz.length;
         $('#score').text(myText);
+        buttonClicked.css("background-color", "green");
         return true;
     }
     else {
+        buttonClicked.css("background-color", "red");
         return false;
     }
 }
