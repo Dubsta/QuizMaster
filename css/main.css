@@ -1,4 +1,27 @@
 
+@import 'https://fonts.googleapis.com/css?family=Baloo+Chettan|Chonburi|Kreon|Roboto+Mono';
+/*font-family: 'Kreon', serif;
+font-family: 'Baloo Chettan', cursive;
+font-family: 'Chonburi', cursive;
+font-family: 'Roboto Mono', monospace;*/
+
+.jumbotron{
+  margin-top: 30px;
+}
+
+body{
+	text-align: center;
+}
+
+h1{
+	font-family: 'Chonburi', cursive;
+	color: #E14150;
+}
+
+h2{
+	font-family:  'Kreon', serif;
+}
+
 li{
 	padding-top: 10px;
 }
@@ -8,6 +31,7 @@ li{
 }
 
 #answerList li {
+	font-family: 'Baloo Chettan';
     display: inline-block;
 }
 

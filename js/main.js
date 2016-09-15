@@ -128,7 +128,7 @@ function checkAnswer(buttonClicked) {
 function endQuiz() {
     clearQuestion();
     $('#number').empty();
-    var message = "Congratulations! You score is " + score + '/' + quiz.length;
+    var message = "Congratulations!<br>Your score is " + score + '/' + quiz.length;
     $('#theQuestion').html(message)
     $('#wholeQuestion').slideDown(fadeDuration);
     $('#score').slideUp(fadeDuration);
