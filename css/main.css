@@ -1,9 +1,11 @@
 
 @import 'https://fonts.googleapis.com/css?family=Baloo+Chettan|Chonburi|Kreon|Roboto+Mono';
-/*font-family: 'Kreon', serif;
+/*
+font-family: 'Kreon', serif;
 font-family: 'Baloo Chettan', cursive;
 font-family: 'Chonburi', cursive;
-font-family: 'Roboto Mono', monospace;*/
+font-family: 'Roboto Mono', monospace;
+*/
 
 .jumbotron{
   margin-top: 30px;
@@ -28,6 +30,7 @@ li{
 
 #answerList {
     list-style-type: none;
+    min-height: 75px;
 }
 
 #answerList li {
